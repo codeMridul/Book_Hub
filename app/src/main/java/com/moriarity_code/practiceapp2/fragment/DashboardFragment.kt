@@ -103,11 +103,13 @@ class DashboardFragment : Fragment() {
                 Response.ErrorListener
                 {
                     //here we will handle the errors
-                    Toast.makeText(
-                        activity as Context,
-                        "Volley Error Occured",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    if (activity != null) {
+                        Toast.makeText(
+                            activity as Context,
+                            "Network connection is unstable",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                 }
             ) {
                 override fun getHeaders(): MutableMap<String, String> {

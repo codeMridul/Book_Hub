@@ -15,4 +15,6 @@
     <color name="colorPrimaryLight">#fafafa</color>
     <color name="colorPrimaryDark">#004ba0</color>
     <color name="colorAccent">#512da8</color>
+    <color name="colorFavourite">#311b92</color>
+
 </resources>
