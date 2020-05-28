@@ -227,6 +227,15 @@ class DescriptionActivity : AppCompatActivity() {
             dialog.show()
         }
     }
+    override fun onBackPressed()
+    {
+        val intent = Intent(this@DescriptionActivity, MainActivity::class.java)
+        startActivity(intent)
+    }
+    override fun onPause() {
+        super.onPause()
+        finish()
+    }
 
     /*private fun setToolbar() {
         setSupportActionBar(toolbar)

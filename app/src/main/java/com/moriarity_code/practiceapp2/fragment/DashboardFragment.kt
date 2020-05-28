@@ -6,9 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.ProgressBar
 import android.widget.RelativeLayout
 import android.widget.Toast
@@ -24,7 +22,12 @@ import com.moriarity_code.practiceapp2.R
 import com.moriarity_code.practiceapp2.adapter.DashboardRecyclerAdapter
 import com.moriarity_code.practiceapp2.model.Book
 import com.moriarity_code.practiceapp2.util.ConnectionManager
+import kotlinx.android.synthetic.main.fragment_favourite.*
 import org.json.JSONException
+import java.util.*
+import java.util.Collections.sort
+import kotlin.Comparator
+import kotlin.collections.HashMap
 
 class DashboardFragment : Fragment() {
     lateinit var recyclerDashboard: RecyclerView
@@ -36,11 +39,19 @@ class DashboardFragment : Fragment() {
     lateinit var progressLayout: RelativeLayout
     lateinit var progressBar: ProgressBar
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    var ratingComparator = Comparator<Book>{ book1, book2 ->
+        if (book1.bookRating.compareTo(book2.bookRating,true) == 0)
+        {
+            book1.bookName.compareTo(book2.bookName,true)
+        }
+        else
+        {
+            book1.bookRating.compareTo(book2.bookRating,true)
+        }
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
+    {
         val view = inflater.inflate(R.layout.fragment_dashboard, container, false)
         recyclerDashboard = view.findViewById(R.id.recyclerDashboard)
 
@@ -49,6 +60,8 @@ class DashboardFragment : Fragment() {
         progressBar = view.findViewById(R.id.progressBar)
         progressLayout = view.findViewById(R.id.progressLayout)
         progressLayout.visibility = View.VISIBLE
+
+        setHasOptionsMenu(true)
 
         /** Http Request segment--------------------------------------------------------------------------------------- **/
         if (ConnectionManager().checkConnectivity(activity as Context))// to check whether there is a internet connection: if yes then make request
@@ -141,4 +154,19 @@ class DashboardFragment : Fragment() {
         return view
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater)
+    {
+        inflater?.inflate(R.menu.menu_dashboard, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item?.itemId
+        if(id == R.id.action_sort)
+        {
+            Collections.sort(bookInfoList, ratingComparator )
+            bookInfoList.reverse()
+        }
+        recyclerAdapter.notifyDataSetChanged()
+        return super.onOptionsItemSelected(item)
+    }
 }

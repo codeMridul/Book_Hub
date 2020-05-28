@@ -12,17 +12,8 @@ import com.moriarity_code.practiceapp2.R
 import com.moriarity_code.practiceapp2.database.BookEntity
 import com.squareup.picasso.Picasso
 
-class FavouriteRecyclerAdapter(val context: Context, val bookList: List<BookEntity>) :
-    RecyclerView.Adapter<FavouriteRecyclerAdapter.FavouriteViewHolder>() {
-    class FavouriteViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var bookName: TextView = view.findViewById(R.id.txtBookNameFav)
-        var bookAuthor: TextView = view.findViewById(R.id.txtAuthorNameFav)
-        var bookPrice: TextView = view.findViewById(R.id.txtBookPriceFav)
-        var bookRating: TextView = view.findViewById(R.id.txtRatingFav)
-        var bookImage: ImageView = view.findViewById(R.id.imgBookCoverFav)
-        var llContent: LinearLayout = view.findViewById(R.id.llContentFav)
-    }
-
+class FavouriteRecyclerAdapter(val context: Context, val bookList: List<BookEntity>) : RecyclerView.Adapter<FavouriteRecyclerAdapter.FavouriteViewHolder>()
+{
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavouriteViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.fragment_favourite_single_element, parent, false)
@@ -41,5 +32,14 @@ class FavouriteRecyclerAdapter(val context: Context, val bookList: List<BookEnti
         holder.bookPrice.text = book.bookPrice
         holder.bookRating.text = book.bookRating
         Picasso.get().load(book.bookImage).error(R.drawable.ic_book).into(holder.bookImage)
+    }
+
+    class FavouriteViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        var bookName: TextView = view.findViewById(R.id.txtBookNameFav)
+        var bookAuthor: TextView = view.findViewById(R.id.txtAuthorNameFav)
+        var bookPrice: TextView = view.findViewById(R.id.txtBookPriceFav)
+        var bookRating: TextView = view.findViewById(R.id.txtRatingFav)
+        var bookImage: ImageView = view.findViewById(R.id.imgBookCoverFav)
+        var llContent: LinearLayout = view.findViewById(R.id.llContentFav)
     }
 }

@@ -33,9 +33,10 @@ class FavouriteFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         val view = inflater.inflate(R.layout.fragment_favourite, container, false)
 
-        recyclerFavourite = view.findViewById(R.id.recyclerfavourite)
+        recyclerFavourite = view.findViewById(R.id.recyclerFavourite)
         progressLayout = view.findViewById(R.id.progressLayout)
         progressBar = view.findViewById(R.id.progressBar)
 
@@ -45,6 +46,7 @@ class FavouriteFragment : Fragment() {
         layoutManager = GridLayoutManager(activity as Context, 2)
 
         dbBookList = RetrieveFavourites(activity as Context).execute().get()
+
         if (activity != null) {
             progressLayout.visibility = View.GONE
             recyclerAdapter = FavouriteRecyclerAdapter(activity as Context, dbBookList)
@@ -55,14 +57,15 @@ class FavouriteFragment : Fragment() {
         return view
     }
 
-    class RetrieveFavourites(val context: Context) : AsyncTask<Void, Void, List<BookEntity>>() {
-        override fun doInBackground(vararg params: Void?): List<BookEntity> {
+    class RetrieveFavourites(val context: Context) : AsyncTask<Void, Void, List<BookEntity>>()
+    {
+        override fun doInBackground(vararg params: Void?): List<BookEntity>
+        {
             val db = Room.databaseBuilder(context, BookDatabase::class.java, "book-db").build()
             val result = db.bookDao().getAllBooks()
-            println(result)
+            println("result=  $result")
 
             return result
-
         }
 
     }

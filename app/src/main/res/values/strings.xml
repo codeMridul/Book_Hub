@@ -22,4 +22,5 @@
     <string name="about_us">About Us</string>
     <string name="about_app">About App</string>
     <string name="add_to_favourites">Add to Favourites</string>
+    <string name="action_sort">Action sort</string>
 </resources>

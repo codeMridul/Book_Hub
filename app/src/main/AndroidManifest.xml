@@ -12,10 +12,13 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
+        android:resizeableActivity="false"
         android:theme="@style/AppTheme">
         <activity
             android:name=".activity.DescriptionActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|screenSize" />
         <activity
             android:name=".activity.SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -27,11 +30,13 @@
         </activity>
         <activity
             android:name=".activity.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|screenSize"/>
         <activity android:name=".activity.LoginActivityCopy" />
         <activity
             android:name=".activity.LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".activity.ForgotPasswordActivity" />
         <activity android:name=".activity.RegistrationActivity" />
     </application>
