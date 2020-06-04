@@ -7,11 +7,11 @@ We can also add our favourite book to Favourite Section
 
 ### Here are some visuals of the App
 </br>
-**Splash Screen**
+~~Splash Screen~~
 <img src="images/splashScreen.jpg" height="400">  
-**Navigation Screen**
+~~Navigation Screen~~
 <img src="images/navigationScreen.jpg" height="400">  
-**Menu Screen**
+~~Menu Screen~~
 <img src="images/menuScreen.jpg" height="400"> 
-**Description Screen**
+~~Description Screen~~
 <img src="images/descriptionScreen.jpg" height="400">  
